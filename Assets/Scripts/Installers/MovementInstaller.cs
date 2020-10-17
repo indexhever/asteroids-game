@@ -3,10 +3,13 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class MovementInstaller : MonoInstaller
+namespace AsteroidsGame.Installer
 {
-    public override void InstallBindings()
+    public class MovementInstaller : MonoInstaller
     {
-        Container.BindFactory<Action, ForceBasedMovementController, ForceBasedMovementController.Factory>();
+        public override void InstallBindings()
+        {
+            Container.BindFactory<Action, ForceBasedMovementController, ForceBasedMovementController.Factory>();
+        }
     }
 }
