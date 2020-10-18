@@ -27,7 +27,6 @@ namespace AsteroidsGame.View
 
         private void SendMovementEvent()
         {
-            Debug.Log("Sending movement event");
             OnMove?.Invoke();
         }
     }
