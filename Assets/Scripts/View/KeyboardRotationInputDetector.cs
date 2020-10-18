@@ -9,7 +9,7 @@ namespace AsteroidsGame.View
     public class KeyboardRotationInputDetector : MonoBehaviour
     {
         [SerializeField]
-        UnityEvent OnLeft, OnRight;
+        private UnityEvent OnLeft, OnRight;
 
         private void FixedUpdate()
         {
