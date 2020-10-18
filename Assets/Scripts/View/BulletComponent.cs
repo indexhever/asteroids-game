@@ -36,6 +36,8 @@ namespace AsteroidsGame.View
 
         public void Dispose()
         {
+            if (!gameObject.activeInHierarchy)
+                return;
             pool.Despawn(this);
         }
 

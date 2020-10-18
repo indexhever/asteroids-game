@@ -94,7 +94,8 @@ GameObject:
   - component: {fileID: 1398591092424693027}
   - component: {fileID: -1765064257522413700}
   - component: {fileID: -5201402224786100175}
-  m_Layer: 0
+  - component: {fileID: 6161068757823934809}
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,3 +183,15 @@ MonoBehaviour:
   objectRigidbody: {fileID: 1398591092424693027}
   thrust: 300
   maxSpeed: 100
+--- !u!114 &6161068757823934809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398591092424693038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad26a47b9f83eee4c889193e27a72406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
