@@ -1,4 +1,5 @@
 using AsteroidsGame.Controller;
+using AsteroidsGame.Controllers;
 using AsteroidsGame.View;
 using System;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class GeneralInstaller : MonoInstaller
 {
     [SerializeField]
     private Camera gameCamera;
+    [SerializeField]
+    private ScoreComponent scoreComponent;
 
     public override void InstallBindings()
     {
@@ -25,6 +28,14 @@ public class GeneralInstaller : MonoInstaller
         Container.BindFactory<Func<Vector2>, Teleporter, Teleporter.Factory>();
 
         Container.Bind<Camera>()
-                 .FromInstance(gameCamera);
+                 .FromInstance(gameCamera)
+                 .AsSingle();
+
+        Container.Bind<ScoreVisual>()
+                 .FromInstance(scoreComponent)
+                 .AsSingle();
+
+        Container.Bind<ScoreSystem>()
+                 .AsSingle();
     }
 }

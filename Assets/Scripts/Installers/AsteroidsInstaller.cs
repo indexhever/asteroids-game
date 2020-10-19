@@ -1,3 +1,4 @@
+using AsteroidsGame.Controllers;
 using AsteroidsGame.View;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,7 @@ public class AsteroidsInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.BindFactory<Vector2, Vector3, AsteroidComponent, AsteroidComponent.Factory>().FromMonoPoolableMemoryPool<Vector2, Vector3, AsteroidComponent>(
+        Container.BindFactory<Vector2, Vector3, ScoreSystem, AsteroidComponent, AsteroidComponent.Factory>().FromMonoPoolableMemoryPool<Vector2, Vector3, ScoreSystem, AsteroidComponent>(
                 x => x.WithInitialSize(ASTEROIDS_INITIAL_AMOUNT).FromComponentInNewPrefab(asteroidPrefab).UnderTransformGroup("AsteroidsPool"));
     }
 
