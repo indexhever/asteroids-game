@@ -22,6 +22,8 @@ public class GeneralInstaller : MonoInstaller
                  .To<DefaultCameraStatsRetriever>()
                  .AsSingle();
 
+        Container.BindFactory<Func<Vector2>, Teleporter, Teleporter.Factory>();
+
         Container.Bind<Camera>()
                  .FromInstance(gameCamera);
     }
