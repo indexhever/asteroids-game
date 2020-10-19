@@ -1,4 +1,5 @@
 ﻿using AsteroidsGame.Controller;
+using AsteroidsGame.Controllers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,19 +15,21 @@ namespace AsteroidsGame.View
 
         private AsteroidComponent.Factory asteroidFactory;
         private InitialPositionSpawner initialPositionSpawner;
+        private ScoreSystem scoreSystem;
 
         [Inject]
-        private void Construct(AsteroidComponent.Factory asteroidFactory, InitialPositionSpawner initialPositionSpawner)
+        private void Construct(AsteroidComponent.Factory asteroidFactory, InitialPositionSpawner initialPositionSpawner, ScoreSystem scoreSystem)
         {
             this.asteroidFactory = asteroidFactory;
             this.initialPositionSpawner = initialPositionSpawner;
+            this.scoreSystem = scoreSystem;
         }
 
         private void Start()
         {
             for(int i = 0; i < INITIAL_ASTEROID_AMOUNT; i++)
             {
-                asteroidFactory.Create(CreateInitialPosition(), CreateInitialRotation());
+                asteroidFactory.Create(CreateInitialPosition(), CreateInitialRotation(), scoreSystem);
             }
         }
 

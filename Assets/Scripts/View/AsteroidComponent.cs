@@ -1,4 +1,5 @@
 ﻿using AsteroidsGame.Controller;
+using AsteroidsGame.Controllers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,25 +8,18 @@ using Zenject;
 
 namespace AsteroidsGame.View
 {
-    public class AsteroidComponent : MonoBehaviour, IPoolable<Vector2, Vector3, IMemoryPool>, IDisposable
+    public class AsteroidComponent : MonoBehaviour, IPoolable<Vector2, Vector3, ScoreSystem, IMemoryPool>, IDisposable
     {
         private IMemoryPool pool;
+        private ScoreSystem scoreSystem;
 
         [SerializeField]
         private ForceBasedMovementComponent forceBasedMovementComponent;
-        //private InitialPositionSpawner initialPositionSpawner;
 
-        //[Inject]
-        //private void Construct(InitialPositionSpawner initialPositionSpawner)
-        //{
-        //    this.initialPositionSpawner = initialPositionSpawner;
-        //}
-
-        public void OnSpawned(Vector2 initialPosition, Vector3 initialRotation, IMemoryPool pool)
+        public void OnSpawned(Vector2 initialPosition, Vector3 initialRotation, ScoreSystem scoreSystem, IMemoryPool pool)
         {
-            //transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
-            //transform.position = initialPositionSpawner.CreatePosition();
             this.pool = pool;
+            this.scoreSystem = scoreSystem;
             transform.position = initialPosition;
             transform.Rotate(initialRotation);
             forceBasedMovementComponent.OnMoveInput();
@@ -42,9 +36,10 @@ namespace AsteroidsGame.View
         public void OnDespawned()
         {
             // Spawn new smal asteroids
+            scoreSystem.Add(10);
         }
 
-        public class Factory : PlaceholderFactory<Vector2, Vector3, AsteroidComponent>
+        public class Factory : PlaceholderFactory<Vector2, Vector3, ScoreSystem, AsteroidComponent>
         {
         }
     }

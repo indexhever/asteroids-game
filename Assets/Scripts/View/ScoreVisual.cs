@@ -5,6 +5,6 @@ namespace AsteroidsGame.View
 {
     public interface ScoreVisual
     {
-        void UpdateWithNewScore(int totalScore);
+        void UpdateWithNewScore(int newScore);
     }
 }
