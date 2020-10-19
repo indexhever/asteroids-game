@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: -1765064257522413700}
   - component: {fileID: -5201402224786100175}
   - component: {fileID: 6161068757823934809}
+  - component: {fileID: -6373497199280029272}
+  - component: {fileID: 1857041358378421773}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -193,5 +195,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad26a47b9f83eee4c889193e27a72406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6373497199280029272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398591092424693038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacaf8ff5d0d0ae4bb9bdf798bee542c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectCollider: {fileID: 1398591092424693024}
+  OnEnterScreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLeaveScreen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1857041358378421773}
+        m_MethodName: OnLeaveScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1857041358378421773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398591092424693038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa62f48a9c5ea498f9d20531733dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

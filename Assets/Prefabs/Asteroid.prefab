@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 3870949838106505749}
   - component: {fileID: 3870949838106505755}
   - component: {fileID: 3870949838106505754}
+  - component: {fileID: -8417343874570229322}
+  - component: {fileID: -1854739429892870631}
   m_Layer: 11
   m_Name: Asteroid
   m_TagString: Untagged
@@ -182,3 +184,45 @@ MonoBehaviour:
   objectRigidbody: {fileID: 3870949838106505748}
   thrust: 50
   maxSpeed: 1.5
+--- !u!114 &-8417343874570229322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870949838106505751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacaf8ff5d0d0ae4bb9bdf798bee542c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectCollider: {fileID: 3870949838106505749}
+  OnEnterScreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLeaveScreen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1854739429892870631}
+        m_MethodName: OnLeaveScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-1854739429892870631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870949838106505751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa62f48a9c5ea498f9d20531733dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
