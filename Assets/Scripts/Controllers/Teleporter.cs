@@ -1,44 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System;
+using AsteroidsGame.View;
 using Zenject;
 
-namespace AsteroidsGame.View
+namespace AsteroidsGame.Controller
 {
-    public class Teleporter : MonoBehaviour
+    public class Teleporter
     {
         private Vector3 currentPosition;
         private Vector2 minimumPositionInWorldSpace;
         private Vector2 maximumPositionInWorldSpace;
+        private Func<Vector2> currentObjectPosition;
         private CameraStatsRetriever cameraStatsRetriever;
 
-        [Inject]
-        private void Construct(CameraStatsRetriever cameraStatsRetriever)
+        public Teleporter(Func<Vector2> currentObjectPosition, CameraStatsRetriever cameraStatsRetriever)
         {
+            this.currentObjectPosition = currentObjectPosition;
             this.cameraStatsRetriever = cameraStatsRetriever;
-        }
-
-        private void Start()
-        {
             SetupMaximumPosition();
             SetupMinimumPosition();
         }
 
-        public void OnLeaveScreen()
+        public Vector2 GetTeleportedPosition()
         {
-            TeleportToOpositeSide();
-        }
-
-        private void TeleportToOpositeSide()
-        {
-            currentPosition = transform.position;
+            currentPosition = currentObjectPosition();
 
             if (IsObjectOutOfHorizontalBounds())
                 currentPosition.x = -currentPosition.x;
             if (IsObjectOutOfVerticalBounds())
                 currentPosition.y = -currentPosition.y;
 
-            transform.position = currentPosition;
+            return currentPosition;
         }
 
         private bool IsObjectOutOfHorizontalBounds()
@@ -55,14 +48,19 @@ namespace AsteroidsGame.View
         {
             float maximumViewportValue = cameraStatsRetriever.ViewPortMaximumValue;
 
-            maximumPositionInWorldSpace =  cameraStatsRetriever.ConvertToWorldPosition(new Vector2(maximumViewportValue, maximumViewportValue));
+            maximumPositionInWorldSpace = cameraStatsRetriever.ConvertToWorldPosition(new Vector2(maximumViewportValue, maximumViewportValue));
         }
 
         private void SetupMinimumPosition()
         {
             float minimumViewportValue = cameraStatsRetriever.ViewPortMinimumValue;
 
-            minimumPositionInWorldSpace =  cameraStatsRetriever.ConvertToWorldPosition(new Vector2(minimumViewportValue, minimumViewportValue));
+            minimumPositionInWorldSpace = cameraStatsRetriever.ConvertToWorldPosition(new Vector2(minimumViewportValue, minimumViewportValue));
+        }
+
+        public class Factory : PlaceholderFactory<Func<Vector2>, Teleporter>
+        {
+
         }
     }
 }
