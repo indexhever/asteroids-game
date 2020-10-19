@@ -12,13 +12,58 @@ namespace Tests
     public class TeleportTests
     {
         [Test]
-        public void WhenObjectIsAboveVerticalLimitItIsTeleportedToBottom()
+        public void WhenObjectIsAboveVerticalTopLimitItIsTeleportedToBottom()
         {
             float verticalLimit = 1.0f;
             Func<Vector2, Vector2> convertToWorldPosition = (objectPositionInViewPort) => objectPositionInViewPort;
             CameraStatsRetriever cameraStatsRetriever = CreateCameraStatsRetriever(convertToWorldPosition);
             Vector2 expectedTeleportedPosition = new Vector2(0, -(verticalLimit + 0.5f)); ;
             Vector2 currentObjectPosition = new Vector2(0, verticalLimit + 0.5f);
+            Teleporter teleporter = CreateTeleporter(() => currentObjectPosition, cameraStatsRetriever);
+
+            Vector2 teleportedPosition = teleporter.GetTeleportedPosition();
+
+            Assert.AreEqual(expectedTeleportedPosition, teleportedPosition);
+        }
+
+        [Test]
+        public void WhenObjectIsUnderVerticalBottomLimitItIsTeleportedToTop()
+        {
+            float verticalLimit = -1.0f;
+            Func<Vector2, Vector2> convertToWorldPosition = (objectPositionInViewPort) => objectPositionInViewPort;
+            CameraStatsRetriever cameraStatsRetriever = CreateCameraStatsRetriever(convertToWorldPosition);
+            Vector2 expectedTeleportedPosition = new Vector2(0, -(verticalLimit - 0.5f)); ;
+            Vector2 currentObjectPosition = new Vector2(0, verticalLimit - 0.5f);
+            Teleporter teleporter = CreateTeleporter(() => currentObjectPosition, cameraStatsRetriever);
+
+            Vector2 teleportedPosition = teleporter.GetTeleportedPosition();
+
+            Assert.AreEqual(expectedTeleportedPosition, teleportedPosition);
+        }
+
+        [Test]
+        public void WhenObjectIsAfterHorizontalRightLimitItIsTeleportedToLeft()
+        {
+            float verticalLimit = 1.0f;
+            Func<Vector2, Vector2> convertToWorldPosition = (objectPositionInViewPort) => objectPositionInViewPort;
+            CameraStatsRetriever cameraStatsRetriever = CreateCameraStatsRetriever(convertToWorldPosition);
+            Vector2 expectedTeleportedPosition = new Vector2(0, -(verticalLimit + 0.5f)); ;
+            Vector2 currentObjectPosition = new Vector2(0, verticalLimit + 0.5f);
+            Teleporter teleporter = CreateTeleporter(() => currentObjectPosition, cameraStatsRetriever);
+
+            Vector2 teleportedPosition = teleporter.GetTeleportedPosition();
+
+            Assert.AreEqual(expectedTeleportedPosition, teleportedPosition);
+        }
+
+        [Test]
+        public void WhenObjectIsBeforeHorizontalLeftLimitItIsTeleportedToRight()
+        {
+            float verticalLimit = -1.0f;
+            Func<Vector2, Vector2> convertToWorldPosition = (objectPositionInViewPort) => objectPositionInViewPort;
+            CameraStatsRetriever cameraStatsRetriever = CreateCameraStatsRetriever(convertToWorldPosition);
+            Vector2 expectedTeleportedPosition = new Vector2(0, -(verticalLimit - 0.5f)); ;
+            Vector2 currentObjectPosition = new Vector2(0, verticalLimit - 0.5f);
             Teleporter teleporter = CreateTeleporter(() => currentObjectPosition, cameraStatsRetriever);
 
             Vector2 teleportedPosition = teleporter.GetTeleportedPosition();
