@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -8417343874570229322}
   - component: {fileID: -1854739429892870631}
   - component: {fileID: 4616476998992721363}
+  - component: {fileID: 5889439899336693621}
   m_Layer: 11
   m_Name: Asteroid
   m_TagString: Untagged
@@ -170,6 +171,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceBasedMovementComponent: {fileID: 3870949838106505754}
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5889439899336693621}
+        m_MethodName: OnDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3870949838106505754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,5 +252,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad26a47b9f83eee4c889193e27a72406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5889439899336693621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870949838106505751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38883765aa384594c9060b89b9d346bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

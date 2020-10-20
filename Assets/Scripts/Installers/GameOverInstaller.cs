@@ -1,5 +1,5 @@
 using AsteroidsGame.Controller;
-using AsteroidsGame.Controllers;
+using AsteroidsGame.Controller;
 using AsteroidsGame.View;
 using System;
 using UnityEngine;
@@ -13,6 +13,8 @@ public class GameOverInstaller : MonoInstaller
     private LifeVisualComponent lifeVisualComponent;
     [SerializeField]
     private GameOverScreenComponent gameOverScreenComponent;
+    [SerializeField]
+    private WinGameScreenComponent winGameScreenComponent;
 
     public override void InstallBindings()
     {
@@ -36,5 +38,14 @@ public class GameOverInstaller : MonoInstaller
                  .To<TimeBasedGamePauseController>()
                  .AsSingle()
                  .WithArguments<Action<float>>((newTimeScale) => Time.timeScale = newTimeScale);
+
+        // Win Game
+        Container.Bind<WinGameController>()
+                 .To<DefaultWinGameController>()
+                 .AsSingle();
+
+        Container.Bind<WinGameScreen>()
+                 .FromInstance(winGameScreenComponent)
+                 .AsSingle();
     }
 }

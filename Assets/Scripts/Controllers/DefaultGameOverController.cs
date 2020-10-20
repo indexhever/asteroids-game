@@ -3,7 +3,7 @@ using System.Collections;
 using AsteroidsGame.Controller;
 using AsteroidsGame.View;
 
-namespace AsteroidsGame.Controllers
+namespace AsteroidsGame.Controller
 {
     public class DefaultGameOverController : GameOverController
     {

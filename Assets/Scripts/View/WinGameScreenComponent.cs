@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace AsteroidsGame.View
 {
-    public class GameOverScreenComponent : MonoBehaviour, GameOverScreen
+    public class WinGameScreenComponent : MonoBehaviour, WinGameScreen
     {
         private const int GAME_SCENE_INDEX = 0;
         [SerializeField]

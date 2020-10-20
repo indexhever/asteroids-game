@@ -1,5 +1,5 @@
 ﻿using AsteroidsGame.Controller;
-using AsteroidsGame.Controllers;
+using AsteroidsGame.Controller;
 using System;
 using System.Collections;
 using System.Collections.Generic;
