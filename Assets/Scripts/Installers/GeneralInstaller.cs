@@ -1,5 +1,5 @@
 using AsteroidsGame.Controller;
-using AsteroidsGame.Controllers;
+using AsteroidsGame.Controller;
 using AsteroidsGame.View;
 using System;
 using UnityEngine;
@@ -36,6 +36,9 @@ public class GeneralInstaller : MonoInstaller
                  .AsSingle();
 
         Container.Bind<ScoreSystem>()
+                 .AsSingle();
+
+        Container.Bind<EnemyDeathController>()
                  .AsSingle();
     }
 }

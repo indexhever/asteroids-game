@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using AsteroidsGame.View;
 
-namespace AsteroidsGame.Controllers
+namespace AsteroidsGame.Controller
 {
     public class ScoreSystem
     {

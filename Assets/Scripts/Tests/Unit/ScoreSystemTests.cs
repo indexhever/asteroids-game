@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using AsteroidsGame.Controllers;
+using AsteroidsGame.Controller;
 using AsteroidsGame.View;
 using NUnit.Framework;
 using UnityEngine;
