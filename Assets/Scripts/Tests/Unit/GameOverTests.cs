@@ -36,13 +36,6 @@ namespace Tests
             Assert.IsTrue(isGamePausedAfterGameOver);
         }
 
-        //TODO: scene controller loads game scene when restart is pressed
-        [Test]
-        public void SceneControllerLoadGameSceneWhenPressedReset()
-        {
-            Assert.Fail();
-        }
-
         private GameOverController CreateGameOverController(GameOverScreen gameOverScreen)
         {
             return new DefaultGameOverController(gameOverScreen, CreateGamePauseController());
