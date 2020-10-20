@@ -1,4 +1,5 @@
-﻿using AsteroidsGame.Controllers;
+﻿using AsteroidsGame.Controller;
+using AsteroidsGame.Controllers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace AsteroidsGame.View
     {
         private const float SECONDS_WAIT_RETURN_ALIVE = 1.5f;
         private const int POINTS_LOSE_WHEN_DIE = 5;
+
         private ScoreSystem scoreSystem;
+        private LifeController lifeController;
         private Vector2 initialPosition;
         private bool isDead;
 
@@ -22,9 +25,10 @@ namespace AsteroidsGame.View
         private UnityEvent OnDie, OnReturnAlive;        
 
         [Inject]
-        private void Construct(ScoreSystem scoreSystem)
+        private void Construct(ScoreSystem scoreSystem, LifeController lifeController)
         {
             this.scoreSystem = scoreSystem;
+            this.lifeController = lifeController;
         }
 
         private void Start()
@@ -44,6 +48,7 @@ namespace AsteroidsGame.View
             ResetSpeed();
             OnDie?.Invoke();
             scoreSystem.Remove(POINTS_LOSE_WHEN_DIE);
+            lifeController.Die();
             StartCoroutine(ReturnAliveAfterSeconds());
         }
 
