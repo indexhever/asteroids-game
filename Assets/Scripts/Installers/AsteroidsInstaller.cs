@@ -5,18 +5,17 @@ using Zenject;
 
 public class AsteroidsInstaller : MonoInstaller
 {
-    private const int ASTEROIDS_INITIAL_AMOUNT = 10;
-
     [SerializeField]
-    private GameObject asteroidPrefab;
+    private AsteroidSpawner asteroidSpawner;
 
     public override void InstallBindings()
     {
-        //Container.BindFactory<Vector2, Vector3, AsteroidComponent, AsteroidComponent.Factory>().FromMonoPoolableMemoryPool<Vector2, Vector3, AsteroidComponent>(
-        //        x => x.WithInitialSize(ASTEROIDS_INITIAL_AMOUNT).FromComponentInNewPrefab(asteroidPrefab).UnderTransformGroup("AsteroidsPool"));
-
         Container.Bind<AsteroidComponent.Factory>()
                 .AsSingle()
                 .NonLazy();
+
+        Container.Bind<AsteroidSpawner>()
+                 .FromInstance(asteroidSpawner)
+                 .AsSingle();
     }
 }

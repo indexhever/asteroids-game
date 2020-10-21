@@ -39,6 +39,21 @@ namespace AsteroidsGame.View
             }
         }
 
+        public void Spawn(GameObject gameObject, Vector3 position, int amountOfAsteroidsToSpawnWhenDie)
+        {
+            StartCoroutine(SpawnCoroutine(gameObject, position, amountOfAsteroidsToSpawnWhenDie));
+        }
+
+        private IEnumerator SpawnCoroutine(GameObject gameObject, Vector3 initialPosition, int amountToSpawn)
+        {
+            for (int i = 0; i < amountToSpawn; i++)
+            {
+                asteroidFactory.Create(gameObject, initialPosition, CreateInitialRotation());
+
+                yield return null;
+            }
+        }
+
         private Vector2 CreateInitialPosition()
         {
             return initialPositionSpawner.CreatePosition();

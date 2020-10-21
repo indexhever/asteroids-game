@@ -8,6 +8,8 @@ namespace AsteroidsGame.View
 {
     public class AsteroidDeathComponent : EnemyDeathComponent, EnemySpawnDefinition
     {
+        private AsteroidSpawner asteroidSpawner;
+
         [SerializeField]
         private AsteroidComponent asteroidToSpawnWhenDie;
         [SerializeField]
@@ -16,6 +18,12 @@ namespace AsteroidsGame.View
         // current asteroid + amount it will spawn when die
         public int AmountWillBeSpawn => 1 + amountOfAsteroidsToSpawnWhenDie; 
 
+        [Inject]
+        private void Construct(AsteroidSpawner asteroidFactory)
+        {
+            this.asteroidSpawner = asteroidFactory;
+        }
+
         public override void OnDie()
         {
             base.OnDie();
@@ -23,10 +31,9 @@ namespace AsteroidsGame.View
             SpawnDebris();
         }
 
-        // TODO: spawn more asteroids when this one is dead
         private void SpawnDebris()
         {
-            
+            asteroidSpawner.Spawn(asteroidToSpawnWhenDie.gameObject, transform.position, amountOfAsteroidsToSpawnWhenDie);
         }
     }
 }

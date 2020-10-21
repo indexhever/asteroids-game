@@ -1197,8 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24ae947f945ac247ba8a038858a9e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidPrefab: {fileID: 3870949838106505751, guid: 0f8d36aeabeedea49841b1c3455b0c07,
-    type: 3}
+  asteroidSpawner: {fileID: 272848582}
 --- !u!1 &1102134163
 GameObject:
   m_ObjectHideFlags: 0
