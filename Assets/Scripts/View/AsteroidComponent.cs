@@ -37,7 +37,6 @@ namespace AsteroidsGame.View
 
         public void OnDespawned()
         {
-            // Spawn new smal asteroids
             OnDie?.Invoke();
         }
 

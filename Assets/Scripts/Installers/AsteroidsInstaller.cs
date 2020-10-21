@@ -3,19 +3,22 @@ using AsteroidsGame.View;
 using UnityEngine;
 using Zenject;
 
-public class AsteroidsInstaller : MonoInstaller
+namespace AsteroidsGame.Installer
 {
-    [SerializeField]
-    private AsteroidSpawner asteroidSpawner;
-
-    public override void InstallBindings()
+    public class AsteroidsInstaller : MonoInstaller
     {
-        Container.Bind<AsteroidComponent.Factory>()
-                .AsSingle()
-                .NonLazy();
+        [SerializeField]
+        private AsteroidSpawner asteroidSpawner;
 
-        Container.Bind<AsteroidSpawner>()
-                 .FromInstance(asteroidSpawner)
-                 .AsSingle();
+        public override void InstallBindings()
+        {
+            Container.Bind<AsteroidComponent.Factory>()
+                    .AsSingle()
+                    .NonLazy();
+
+            Container.Bind<AsteroidSpawner>()
+                     .FromInstance(asteroidSpawner)
+                     .AsSingle();
+        }
     }
 }
