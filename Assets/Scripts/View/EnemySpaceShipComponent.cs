@@ -1,6 +1,4 @@
-﻿using AsteroidsGame.Controller;
-using AsteroidsGame.Controller;
-using AsteroidsGame.Util;
+﻿using AsteroidsGame.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ using Zenject;
 
 namespace AsteroidsGame.View
 {
-    public class AsteroidComponent : MonoBehaviour, IPoolable<Vector2, Vector3, IMemoryPool>, IDisposable
+    public class EnemySpaceShipComponent : MonoBehaviour, IPoolable<Vector2, Vector3, IMemoryPool>, IDisposable
     {
         private IMemoryPool pool;
 
@@ -40,7 +38,7 @@ namespace AsteroidsGame.View
             OnDie?.Invoke();
         }
 
-        public class Factory : RuntimeGameObjectFactory<Vector2, Vector3, AsteroidComponent>
+        public class Factory : RuntimeGameObjectFactory<Vector2, Vector3, EnemySpaceShipComponent>
         {
 
         }

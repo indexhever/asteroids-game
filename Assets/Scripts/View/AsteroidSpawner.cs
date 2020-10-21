@@ -17,6 +17,9 @@ namespace AsteroidsGame.View
         private InitialPositionSpawner initialPositionSpawner;
         private EnemyDeathController enemyDeathController;
 
+        [SerializeField]
+        private GameObject asteroidPrefab;
+
         [Inject]
         private void Construct(AsteroidComponent.Factory asteroidFactory, InitialPositionSpawner initialPositionSpawner, EnemyDeathController enemyDeathController)
         {
@@ -27,11 +30,27 @@ namespace AsteroidsGame.View
 
         private void Start()
         {
-            enemyDeathController.IncreaseAmountAliveEnemies(INITIAL_ASTEROID_AMOUNT);
-
             for (int i = 0; i < INITIAL_ASTEROID_AMOUNT; i++)
             {
-                asteroidFactory.Create(CreateInitialPosition(), CreateInitialRotation());
+                AsteroidComponent asteroidComponent = asteroidFactory.Create(asteroidPrefab, CreateInitialPosition(), CreateInitialRotation());
+
+                EnemySpawnDefinition enemySpawnDefinition = asteroidComponent.GetComponent<EnemySpawnDefinition>();
+                enemyDeathController.IncreaseAmountAliveEnemies(enemySpawnDefinition.AmountWillBeSpawn);
+            }
+        }
+
+        public void Spawn(GameObject gameObject, Vector3 position, int amountOfAsteroidsToSpawnWhenDie)
+        {
+            StartCoroutine(SpawnCoroutine(gameObject, position, amountOfAsteroidsToSpawnWhenDie));
+        }
+
+        private IEnumerator SpawnCoroutine(GameObject gameObject, Vector3 initialPosition, int amountToSpawn)
+        {
+            for (int i = 0; i < amountToSpawn; i++)
+            {
+                asteroidFactory.Create(gameObject, initialPosition, CreateInitialRotation());
+
+                yield return null;
             }
         }
 

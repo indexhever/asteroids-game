@@ -3,21 +3,22 @@ using AsteroidsGame.View;
 using UnityEngine;
 using Zenject;
 
-public class AsteroidsInstaller : MonoInstaller
+namespace AsteroidsGame.Installer
 {
-    private const int ASTEROIDS_INITIAL_AMOUNT = 10;
-
-    [SerializeField]
-    private GameObject asteroidPrefab;
-
-    public override void InstallBindings()
+    public class AsteroidsInstaller : MonoInstaller
     {
-        Container.BindFactory<Vector2, Vector3, AsteroidComponent, AsteroidComponent.Factory>().FromMonoPoolableMemoryPool<Vector2, Vector3, AsteroidComponent>(
-                x => x.WithInitialSize(ASTEROIDS_INITIAL_AMOUNT).FromComponentInNewPrefab(asteroidPrefab).UnderTransformGroup("AsteroidsPool"));
-    }
+        [SerializeField]
+        private AsteroidSpawner asteroidSpawner;
 
-    private new void Start()
-    {
-        
+        public override void InstallBindings()
+        {
+            Container.Bind<AsteroidComponent.Factory>()
+                    .AsSingle()
+                    .NonLazy();
+
+            Container.Bind<AsteroidSpawner>()
+                     .FromInstance(asteroidSpawner)
+                     .AsSingle();
+        }
     }
 }

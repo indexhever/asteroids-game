@@ -2,25 +2,38 @@
 using System.Collections;
 using AsteroidsGame.Controller;
 using Zenject;
+using System;
 
 namespace AsteroidsGame.View
 {
-    public class AsteroidDeathComponent : EnemyDeathComponent
+    public class AsteroidDeathComponent : EnemyDeathComponent, EnemySpawnDefinition
     {
-        private ScoreSystem scoreSystem;
-        private EnemyDeathController enemyDeathController;
+        private AsteroidSpawner asteroidSpawner;
+
+        [SerializeField]
+        private AsteroidComponent asteroidToSpawnWhenDie;
+        [SerializeField]
+        private int amountOfAsteroidsToSpawnWhenDie;
+
+        // current asteroid + amount it will spawn when die
+        public int AmountWillBeSpawn => 1 + amountOfAsteroidsToSpawnWhenDie; 
 
         [Inject]
-        private void Construct(ScoreSystem scoreSystem, EnemyDeathController enemyDeathController)
+        private void Construct(AsteroidSpawner asteroidFactory)
         {
-            this.scoreSystem = scoreSystem;
-            this.enemyDeathController = enemyDeathController;
+            this.asteroidSpawner = asteroidFactory;
         }
 
         public override void OnDie()
         {
-            scoreSystem.Add(10);
-            enemyDeathController.DecreaseAmountAliveEnemies();
+            base.OnDie();
+
+            SpawnDebris();
+        }
+
+        private void SpawnDebris()
+        {
+            asteroidSpawner.Spawn(asteroidToSpawnWhenDie.gameObject, transform.position, amountOfAsteroidsToSpawnWhenDie);
         }
     }
 }
