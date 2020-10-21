@@ -7,6 +7,7 @@ using Zenject;
 
 namespace AsteroidsGame.View
 {
+    // TODO: remove duplication between this spawner and asteroid one
     public class EnemySpaceShipSpawner : MonoBehaviour
     {
         private const float SECONDS_WAIT_NEXT_SPAWN = 10.0f;
