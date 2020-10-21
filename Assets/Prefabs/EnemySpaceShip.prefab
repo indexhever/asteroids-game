@@ -180,8 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1910da659afd44ba107ba18831266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectRigidbody: {fileID: 3870949838106505748, guid: 0f8d36aeabeedea49841b1c3455b0c07,
-    type: 3}
+  objectRigidbody: {fileID: 8431743647117993424}
   thrust: 50
   maxSpeed: 1.5
 --- !u!114 &8431743647117993452
