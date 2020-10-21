@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8431743647117993451}
   - component: {fileID: 8431743647117993452}
   - component: {fileID: 1731893471}
+  - component: {fileID: 2249137643307894856}
   m_Layer: 9
   m_Name: EnemySpaceShip
   m_TagString: Untagged
@@ -223,3 +224,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsToGiveWhenKilled: 20
+--- !u!114 &2249137643307894856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431743647117993425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacaf8ff5d0d0ae4bb9bdf798bee542c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectCollider: {fileID: 3870949838106505749, guid: 0f8d36aeabeedea49841b1c3455b0c07,
+    type: 3}
+  OnEnterScreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLeaveScreen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8431743647117993452}
+        m_MethodName: ReturnToPoolAlive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

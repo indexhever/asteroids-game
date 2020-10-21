@@ -11,6 +11,7 @@ namespace AsteroidsGame.View
     public class EnemySpaceShipComponent : MonoBehaviour, IPoolable<Vector2, Vector3, IMemoryPool>, IDisposable
     {
         private IMemoryPool pool;
+        private bool isAlive;
 
         [SerializeField]
         private ForceBasedMovementComponent forceBasedMovementComponent;
@@ -23,6 +24,8 @@ namespace AsteroidsGame.View
             transform.position = initialPosition;
             transform.Rotate(initialRotation);
             forceBasedMovementComponent.OnMoveInput();
+            isAlive = true;
+
         }
 
         public void Dispose()
@@ -30,12 +33,21 @@ namespace AsteroidsGame.View
             if (!gameObject.activeInHierarchy)
                 return;
 
+            isAlive = false;
             pool.Despawn(this);
         }
 
         public void OnDespawned()
         {
+            if (isAlive)
+                return;
+
             OnDie?.Invoke();
+        }
+
+        public void ReturnToPoolAlive()
+        {
+            pool.Despawn(this);
         }
 
         public class Factory : RuntimeGameObjectFactory<Vector2, Vector3, EnemySpaceShipComponent>

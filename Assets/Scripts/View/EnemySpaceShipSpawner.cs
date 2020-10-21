@@ -9,7 +9,7 @@ namespace AsteroidsGame.View
 {
     public class EnemySpaceShipSpawner : MonoBehaviour
     {
-        private const float SECONDS_WAIT_NEXT_SPAWN = 5.0f;
+        private const float SECONDS_WAIT_NEXT_SPAWN = 10.0f;
 
         private EnemySpaceShipComponent.Factory factory;
         private EnemyDeathController enemyDeathController;
