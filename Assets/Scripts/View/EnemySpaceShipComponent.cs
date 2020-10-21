@@ -13,7 +13,11 @@ namespace AsteroidsGame.View
 
         public void Dispose()
         {
+            if (!gameObject.activeInHierarchy)
+                return;
+            
             gameObject.SetActive(false);
+            OnDie?.Invoke();
         }
     }
 }

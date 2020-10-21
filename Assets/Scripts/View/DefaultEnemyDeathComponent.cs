@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AsteroidsGame.View
 {
-    public class DebrisDeathComponent : EnemyDeathComponent
+    public class DefaultEnemyDeathComponent : EnemyDeathComponent
     {
 
     }
