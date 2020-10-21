@@ -1,5 +1,6 @@
 ﻿using AsteroidsGame.Controller;
 using AsteroidsGame.Controller;
+using AsteroidsGame.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,8 +41,13 @@ namespace AsteroidsGame.View
             OnDie?.Invoke();
         }
 
-        public class Factory : PlaceholderFactory<Vector2, Vector3, AsteroidComponent>
+        //public class Factory : PlaceholderFactory<Vector2, Vector3, AsteroidComponent>
+        //{
+        //}
+
+        public class Factory : RuntimeGameObjectFactory<Vector2, Vector3, AsteroidComponent>
         {
+
         }
     }
 }
