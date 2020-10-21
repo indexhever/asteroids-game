@@ -15,9 +15,4 @@ public class AsteroidsInstaller : MonoInstaller
         Container.BindFactory<Vector2, Vector3, AsteroidComponent, AsteroidComponent.Factory>().FromMonoPoolableMemoryPool<Vector2, Vector3, AsteroidComponent>(
                 x => x.WithInitialSize(ASTEROIDS_INITIAL_AMOUNT).FromComponentInNewPrefab(asteroidPrefab).UnderTransformGroup("AsteroidsPool"));
     }
-
-    private new void Start()
-    {
-        
-    }
 }

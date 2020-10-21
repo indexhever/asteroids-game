@@ -27,11 +27,12 @@ namespace AsteroidsGame.View
 
         private void Start()
         {
-            enemyDeathController.IncreaseAmountAliveEnemies(INITIAL_ASTEROID_AMOUNT);
-
             for (int i = 0; i < INITIAL_ASTEROID_AMOUNT; i++)
             {
-                asteroidFactory.Create(CreateInitialPosition(), CreateInitialRotation());
+                AsteroidComponent asteroidComponent = asteroidFactory.Create(CreateInitialPosition(), CreateInitialRotation());
+
+                EnemySpawnDefinition enemySpawnDefinition = asteroidComponent.GetComponent<EnemySpawnDefinition>();
+                enemyDeathController.IncreaseAmountAliveEnemies(enemySpawnDefinition.AmountWillBeSpawn);
             }
         }
 
