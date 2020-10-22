@@ -13,7 +13,6 @@ namespace AsteroidsGame.View
         private const float SECONDS_WAIT_NEXT_SPAWN = 10.0f;
 
         private EnemySpaceShipComponent.Factory factory;
-        private EnemyDeathController enemyDeathController;
         private CameraStatsRetriever cameraStatsRetriever;
         private int currentScreenSide;
 
@@ -23,17 +22,15 @@ namespace AsteroidsGame.View
         private int amountToSpawn;
 
         [Inject]
-        private void Construct(EnemySpaceShipComponent.Factory factory, /*InitialPositionSpawner initialPositionSpawner, */EnemyDeathController enemyDeathController, CameraStatsRetriever cameraStatsRetriever)
+        private void Construct(EnemySpaceShipComponent.Factory factory, /*InitialPositionSpawner initialPositionSpawner, */CameraStatsRetriever cameraStatsRetriever)
         {
             this.factory = factory;
             //this.initialPositionSpawner = initialPositionSpawner;
-            this.enemyDeathController = enemyDeathController;
             this.cameraStatsRetriever = cameraStatsRetriever;
         }
 
         private void Start()
         {
-            enemyDeathController.IncreaseAmountAliveEnemies(amountToSpawn);
             StartCoroutine(SpawnCoroutine());
         }
 

@@ -8,7 +8,7 @@ namespace AsteroidsGame.View
 {
     public class BulletComponent : MonoBehaviour, IPoolable<Vector2, Vector2, IMemoryPool>, IDisposable
     {
-        private const float SECONDS_BEFORE_INVOKING_AUTO_DESTRUCTION = 1.5f;
+        private const float SECONDS_BEFORE_INVOKING_AUTO_DESTRUCTION = 1.4f;
         private const string AUTO_DESTRUCTION_FUNCION = "Dispose";
 
         private IMemoryPool pool;

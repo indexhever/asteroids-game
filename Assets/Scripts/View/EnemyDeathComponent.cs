@@ -23,7 +23,17 @@ namespace AsteroidsGame.View
 
         public virtual void OnDie()
         {
+            GivePoints();
+            DecreaseEnemiesAlive();
+        }
+
+        protected void GivePoints()
+        {
             scoreSystem.Add(pointsToGiveWhenKilled);
+        }
+
+        protected void DecreaseEnemiesAlive()
+        {
             enemyDeathController.DecreaseAmountAliveEnemies();
         }
     }

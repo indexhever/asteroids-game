@@ -10,11 +10,15 @@ namespace AsteroidsGame.View
 {
     public class EnemySpaceShipComponent : MonoBehaviour, IPoolable<Vector2, Vector3, IMemoryPool>, IDisposable
     {
+        private const float SECONDS_WAIT_FIRING_AGAIN = 2.0f;
+
         private IMemoryPool pool;
         private bool isAlive;
 
         [SerializeField]
         private ForceBasedMovementComponent forceBasedMovementComponent;
+        [SerializeField]
+        private FirerComponent firer; 
         [SerializeField]
         private UnityEvent OnDie;
 
@@ -25,7 +29,22 @@ namespace AsteroidsGame.View
             transform.Rotate(initialRotation);
             forceBasedMovementComponent.OnMoveInput();
             isAlive = true;
+            StartCoroutine(FireToNewDirection());
+        }
 
+        private IEnumerator FireToNewDirection()
+        {
+            while (isAlive)
+            {
+                yield return new WaitForSeconds(SECONDS_WAIT_FIRING_AGAIN);
+                firer.transform.RotateAround(transform.position, Vector3.forward, CreateRandomAngle());
+                firer.OnFiring();                
+            }
+        }
+
+        private int CreateRandomAngle()
+        {
+            return UnityEngine.Random.Range(0, 360);
         }
 
         public void Dispose()
@@ -42,12 +61,26 @@ namespace AsteroidsGame.View
             if (isAlive)
                 return;
 
+            StopFiring();
+            ResetRotation();
             OnDie?.Invoke();
         }
 
         public void ReturnToPoolAlive()
         {
+            StopFiring();
+            ResetRotation();            
             pool.Despawn(this);
+        }
+
+        private void StopFiring()
+        {
+            StopCoroutine(FireToNewDirection());
+        }
+
+        private void ResetRotation()
+        {
+            transform.up = Vector3.up;
         }
 
         public class Factory : RuntimeGameObjectFactory<Vector2, Vector3, EnemySpaceShipComponent>
