@@ -4,8 +4,8 @@
 Systems Requirements
 - It was tested on Windows 10 - 64 bits
 
-Install instructions
-- Unzip the file
+Game Install instructions
+- Unzip the file [file](https://github.com/indexhever/asteroids-game/releases/download/v1.0.0/1.0.0.zip) found here: https://github.com/indexhever/asteroids-game/releases/tag/v1.0.0
 - Run the AsteroidsGame.exe
 
 How to play
