@@ -7,14 +7,15 @@ using Zenject;
 
 namespace AsteroidsGame.View
 {
-    // TODO: remove duplication between this spawner and asteroid one
     public class EnemySpaceShipSpawner : MonoBehaviour
     {
         private const float SECONDS_WAIT_NEXT_SPAWN = 10.0f;
+        private const float FACING_LEFT_ANGLE_IN_DEGREES = 90;
+        private const float FACING_RIGHT_ANGLE_IN_DEGREES = 270;
 
         private EnemySpaceShipComponent.Factory factory;
         private CameraStatsRetriever cameraStatsRetriever;
-        private int currentScreenSide;
+        private int currentScreenSideToSpawn;
 
         [SerializeField]
         private GameObject prefab;
@@ -22,10 +23,9 @@ namespace AsteroidsGame.View
         private int amountToSpawn;
 
         [Inject]
-        private void Construct(EnemySpaceShipComponent.Factory factory, /*InitialPositionSpawner initialPositionSpawner, */CameraStatsRetriever cameraStatsRetriever)
+        private void Construct(EnemySpaceShipComponent.Factory factory, CameraStatsRetriever cameraStatsRetriever)
         {
             this.factory = factory;
-            //this.initialPositionSpawner = initialPositionSpawner;
             this.cameraStatsRetriever = cameraStatsRetriever;
         }
 
@@ -58,24 +58,27 @@ namespace AsteroidsGame.View
 
         private void SortScreenSideToSpawn()
         {
-            currentScreenSide = UnityEngine.Random.Range(0, 2);
+            currentScreenSideToSpawn = UnityEngine.Random.Range(0, 2);
         }
 
         private float GetXFromScreenSide()
         {
             float rightX = cameraStatsRetriever.ViewPortMaximumValue;
             float leftX = cameraStatsRetriever.ViewPortMinimumValue;
-            return currentScreenSide == 0 ? leftX : rightX;
+            return IsCurrentSpawnSideLeft() ? leftX : rightX;
         }
 
         private Vector3 CreateRotationBasedOnCurrentScreenSide()
         {
-            float rotatedFacingLeft = 90;
-            float rotatedFacingRight = 270;
             // if it is left side, rotate facing right, if not, rotate facing left
-            float rotationZ = currentScreenSide == 0 ? rotatedFacingRight : rotatedFacingLeft;
+            float rotationZ = IsCurrentSpawnSideLeft() ? FACING_RIGHT_ANGLE_IN_DEGREES : FACING_LEFT_ANGLE_IN_DEGREES;
 
             return new Vector3(0, 0, rotationZ);
+        }
+
+        private bool IsCurrentSpawnSideLeft()
+        {
+            return currentScreenSideToSpawn == 0;
         }
     }
 }

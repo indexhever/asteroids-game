@@ -25,7 +25,8 @@ public class GameOverInstaller : MonoInstaller
         Container.Bind<LifeVisual>()
                  .FromInstance(lifeVisualComponent)
                  .AsSingle();
-
+        
+        // Game Over
         Container.Bind<GameOverController>()
                  .To<DefaultGameOverController>()
                  .AsSingle();

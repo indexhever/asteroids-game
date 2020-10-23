@@ -407,6 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 3870949838106505751, guid: 0f8d36aeabeedea49841b1c3455b0c07,
     type: 3}
+  initialAmountToSpawn: 5
 --- !u!4 &272848583
 Transform:
   m_ObjectHideFlags: 0
@@ -1701,7 +1702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectRigidbody: {fileID: 1313941640}
   thrust: 50
-  maxSpeed: 1.5
 --- !u!114 &1313941644
 MonoBehaviour:
   m_ObjectHideFlags: 0

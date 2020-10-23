@@ -9,7 +9,6 @@ namespace AsteroidsGame.View
 {
     public class AsteroidSpawner : MonoBehaviour
     {
-        private const int  INITIAL_ASTEROID_AMOUNT = 5;
         private const int MAX_ROTATION_DEGREE = 360;
         private const int MIN_ROTATION_DEGREE = 0;
 
@@ -19,6 +18,8 @@ namespace AsteroidsGame.View
 
         [SerializeField]
         private GameObject asteroidPrefab;
+        [SerializeField]
+        private int initialAmountToSpawn = 5;
 
         [Inject]
         private void Construct(AsteroidComponent.Factory asteroidFactory, InitialPositionSpawner initialPositionSpawner, EnemyDeathController enemyDeathController)
@@ -30,7 +31,7 @@ namespace AsteroidsGame.View
 
         private void Start()
         {
-            for (int i = 0; i < INITIAL_ASTEROID_AMOUNT; i++)
+            for (int i = 0; i < initialAmountToSpawn; i++)
             {
                 AsteroidComponent asteroidComponent = asteroidFactory.Create(asteroidPrefab, CreateInitialPosition(), CreateInitialRotation());
 

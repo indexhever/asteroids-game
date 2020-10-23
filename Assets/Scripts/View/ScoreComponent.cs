@@ -10,7 +10,6 @@ namespace AsteroidsGame.View
         [SerializeField]
         private Text textComponent;
 
-        //TODO: control concurrent update?
         public void UpdateWithNewScore(int newScore)
         {
             textComponent.text = newScore.ToString();
